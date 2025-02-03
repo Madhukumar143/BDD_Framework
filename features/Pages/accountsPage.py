@@ -6,13 +6,13 @@ class Accountpage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    edit_your_account_option_link_text = "Edit your account information"
+    edit_your_account_option_linktext = "Edit your account information"
     account_created_confirmation_xpath= "//div[@id='content']/child::h1"
 
 
 
     def display_status_of_edit_account(self):
-        return self.check_display_status("edit_your_account_option_link_text",self.edit_your_account_option_link_text)
+        return self.check_display_status("edit_your_account_option_linktext",self.edit_your_account_option_linktext)
         #return self.driver.find_element(By.LINK_TEXT,self.edit_your_account_option_link_text).is_displayed()
 
     def check_status_of_account_registration(self,exp_text):

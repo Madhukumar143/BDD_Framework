@@ -18,13 +18,14 @@ def step_impl(context):
 
 @when(u'I enter details into mandatory fields')
 def step_impl(context):
-    time_stamp = (datetime.now().strftime("%Y_%m_%d_%H_%M_%S"))
-    new_email = "madhu" + time_stamp + "@gmail.com"
-    context.registerpage.enter_firstname_and_lastname("Madhu kumar","HM")
-    context.registerpage.enter_telephone(8296798325)
-    context.registerpage.enter_email(new_email)
-    context.registerpage.enter_and_confirm_password("Maddy@1234","Maddy@1234")
-    context.registerpage.agree_to_privacy_and_policy()
+    for row in context.table:
+        time_stamp = (datetime.now().strftime("%Y_%m_%d_%H_%M_%S"))
+        new_email = "madhu" + time_stamp + "@gmail.com"
+        context.registerpage.enter_firstname_and_lastname(row["first_name"], row["last_name"])
+        context.registerpage.enter_telephone(row["telephone"])
+        context.registerpage.enter_email(new_email)
+        context.registerpage.enter_and_confirm_password(row["password"], row["password"])
+        context.registerpage.agree_to_privacy_and_policy()
 
 @when(u'Click on continue button')
 def step_impl(context):
@@ -37,22 +38,24 @@ def step_impl(context):
 
 @when(u'I enter details into All fields')
 def step_impl(context):
-    time_stamp = (datetime.now().strftime("%Y_%m_%d_%H_%M_%S"))
-    new_email = "madhu" + time_stamp + "@gmail.com"
-    context.registerpage.enter_firstname_and_lastname("Madhu kumar", "HM")
-    context.registerpage.enter_telephone(8296798325)
-    context.registerpage.enter_email(new_email)
-    context.registerpage.enter_and_confirm_password("Maddy@1234", "Maddy@1234")
-    context.registerpage.agree_to_privacy_and_policy()
-    context.registerpage.select_the_news_letter_radio_button("Yes")
+    for row in context.table:
+        time_stamp = (datetime.now().strftime("%Y_%m_%d_%H_%M_%S"))
+        new_email = "madhu" + time_stamp + "@gmail.com"
+        context.registerpage.enter_firstname_and_lastname(row["first_name"], row["last_name"])
+        context.registerpage.enter_telephone(row["telephone"])
+        context.registerpage.enter_email(new_email)
+        context.registerpage.enter_and_confirm_password(row["password"], row["password"])
+        context.registerpage.agree_to_privacy_and_policy()
+        context.registerpage.select_the_news_letter_radio_button("Yes")
 
 @when(u'I enter details into All fields except email field')
 def step_impl(context):
-    context.registerpage.enter_firstname_and_lastname("Madhu kumar", "HM")
-    context.registerpage.enter_telephone(8296798325)
-    context.registerpage.enter_and_confirm_password("Maddy@1234", "Maddy@1234")
-    context.registerpage.agree_to_privacy_and_policy()
-    context.registerpage.select_the_news_letter_radio_button("Yes")
+    for row in context.table:
+        context.registerpage.enter_firstname_and_lastname(row["first_name"], row["last_name"])
+        context.registerpage.enter_telephone(row["telephone"])
+        context.registerpage.enter_and_confirm_password(row["password"], row["password"])
+        context.registerpage.agree_to_privacy_and_policy()
+        context.registerpage.select_the_news_letter_radio_button("Yes")
 
 @when(u'I enter existing email into email field')
 def step_impl(context):
